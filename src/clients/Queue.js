@@ -38,7 +38,7 @@ export default class Queue extends Client {
     this.listWorkerTypes.entry = {type:'function',method:'get',route:'/provisioners/<provisionerId>/worker-types',query:['continuationToken','limit'],args:['provisionerId'],name:'listWorkerTypes',stability:'experimental',output:true};
     this.getWorkerType.entry = {type:'function',method:'get',route:'/provisioners/<provisionerId>/worker-types/<workerType>',query:[],args:['provisionerId','workerType'],name:'getWorkerType',stability:'experimental',output:true};
     this.declareWorkerType.entry = {type:'function',method:'put',route:'/provisioners/<provisionerId>/worker-types/<workerType>',query:[],args:['provisionerId','workerType'],name:'declareWorkerType',stability:'experimental',scopes:[['queue:declare-worker-type:<provisionerId>/<workerType>#<property>']],input:true,output:true};
-    this.listWorkers.entry = {type:'function',method:'get',route:'/provisioners/<provisionerId>/worker-types/<workerType>/workers',query:['continuationToken','limit'],args:['provisionerId','workerType'],name:'listWorkers',stability:'experimental',output:true};
+    this.listWorkers.entry = {type:'function',method:'get',route:'/provisioners/<provisionerId>/worker-types/<workerType>/workers',query:['continuationToken','limit','disabled'],args:['provisionerId','workerType'],name:'listWorkers',stability:'experimental',output:true};
     this.getWorker.entry = {type:'function',method:'get',route:'/provisioners/<provisionerId>/worker-types/<workerType>/workers/<workerGroup>/<workerId>',query:[],args:['provisionerId','workerType','workerGroup','workerId'],name:'getWorker',stability:'experimental',output:true};
     this.declareWorker.entry = {type:'function',method:'put',route:'/provisioners/<provisionerId>/worker-types/<workerType>/<workerGroup>/<workerId>',query:[],args:['provisionerId','workerType','workerGroup','workerId'],name:'declareWorker',stability:'experimental',scopes:[['queue:declare-worker:<provisionerId>/<workerType>/<workerGroup><workerId>#<property>']],input:true,output:true};
     this.ping.entry = {type:'function',method:'get',route:'/ping',query:[],args:[],name:'ping',stability:'stable'};
@@ -437,7 +437,9 @@ export default class Queue extends Client {
     return this.request(this.declareWorkerType.entry, args);
   }
 
-  // Get a list of all active workerGroup/workerId of a workerType.
+  // Get a list of all active workers of a workerType.
+  // `listWorkers` allows a response to be filtered by the `disabled` property.
+  // To filter the query, you should call the end-point with `disabled` as a query-string option.
   // The response is paged. If this end-point returns a `continuationToken`, you
   // should call the end-point again with the `continuationToken` as a query-string
   // option. By default this end-point will list up to 1000 workers in a single
