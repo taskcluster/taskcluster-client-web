@@ -47,7 +47,7 @@
     "object.omit": "^3.0.0"
   },
   "dependencies": {
-    "hawk": "^6.0.2",
+    "hawk": "^7.0.5",
     "query-string": "^5.0.0"
   }
 }
