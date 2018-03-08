@@ -10,10 +10,11 @@ export default class Index extends Client {
       ...options
     });
     this.findTask.entry = {type:'function',method:'get',route:'/task/<indexPath>',query:[],args:['indexPath'],name:'findTask',stability:'stable',output:true}; // eslint-disable-line
-    this.listNamespaces.entry = {type:'function',method:'post',route:'/namespaces/<namespace>',query:[],args:['namespace'],name:'listNamespaces',stability:'stable',input:true,output:true}; // eslint-disable-line
+    this.listNamespaces.entry = {type:'function',method:'get',route:'/namespaces/<namespace>',query:['continuationToken','limit'],args:['namespace'],name:'listNamespaces',stability:'stable',output:true}; // eslint-disable-line
+    this.listNamespacesPost.entry = {type:'function',method:'post',route:'/namespaces/<namespace>',query:[],args:['namespace'],name:'listNamespacesPost',stability:'deprecated',input:true,output:true}; // eslint-disable-line
     this.listTasks.entry = {type:'function',method:'post',route:'/tasks/<namespace>',query:[],args:['namespace'],name:'listTasks',stability:'stable',input:true,output:true}; // eslint-disable-line
-    this.insertTask.entry = {type:'function',method:'put',route:'/task/<namespace>',query:[],args:['namespace'],name:'insertTask',stability:'stable',scopes:[['index:insert-task:<namespace>']],input:true,output:true}; // eslint-disable-line
-    this.findArtifactFromTask.entry = {type:'function',method:'get',route:'/task/<indexPath>/artifacts/<name>',query:[],args:['indexPath','name'],name:'findArtifactFromTask',stability:'stable',scopes:[['queue:get-artifact:<name>']]}; // eslint-disable-line
+    this.insertTask.entry = {type:'function',method:'put',route:'/task/<namespace>',query:[],args:['namespace'],name:'insertTask',stability:'stable',scopes:'index:insert-task:<namespace>',input:true,output:true}; // eslint-disable-line
+    this.findArtifactFromTask.entry = {type:'function',method:'get',route:'/task/<indexPath>/artifacts/<name>',query:[],args:['indexPath','name'],name:'findArtifactFromTask',stability:'stable',scopes:{'if':'private',then:'queue:get-artifact:<name>'}}; // eslint-disable-line
     this.ping.entry = {type:'function',method:'get',route:'/ping',query:[],args:[],name:'ping',stability:'stable'}; // eslint-disable-line
   }
 
@@ -33,6 +34,17 @@ export default class Index extends Client {
   listNamespaces(...args) {
     this.validate(this.listNamespaces.entry, args);
     return this.request(this.listNamespaces.entry, args);
+  }
+
+  // List the namespaces immediately under a given namespace.
+  // This endpoint
+  // lists up to 1000 namespaces. If more namespaces are present, a
+  // `continuationToken` will be returned, which can be given in the next
+  // request. For the initial request, the payload should be an empty JSON
+  // object.
+  listNamespacesPost(...args) {
+    this.validate(this.listNamespacesPost.entry, args);
+    return this.request(this.listNamespacesPost.entry, args);
   }
 
   // List the tasks immediately under a given namespace.
