@@ -121,11 +121,11 @@ fetchApis()
 `# Documentation
 
 The documentation in this directory is automatically generated from the API entries
-generated from the [Taskcluster Manifest Reference](${fetchApis.MANIFEST_URL}).
+generated from the [Manifest Reference](${process.env.MANIFEST_URL}).
 Detailed documentation with description, payload, and result formats is available on
-[docs.taskcluster.net](http://docs.taskcluster.net).
+[${process.env.BASE_URL}/docs](${process.env.BASE_URL}/docs).
 
-On the [documentation site](http://docs.taskcluster.net) entries often have a
+On the [documentation site](${process.env.BASE_URL}/docs) entries often have a
 _signature_; you'll find that it corresponds with the signatures below. Note that all
 the methods return a \`Promise\`. A method marked with \`Promise Result\` is a promise that
 resolves with the API result. A method marked with \`Promise Nothing\` will also return a

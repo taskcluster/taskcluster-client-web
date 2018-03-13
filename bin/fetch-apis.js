@@ -1,6 +1,6 @@
 const got = require('got');
 
-const MANIFEST_URL = 'http://references.taskcluster.net/manifest.json';
+const MANIFEST_URL = process.env.MANIFEST_URL;
 
 module.exports = () => {
   const apis = {};

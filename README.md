@@ -308,14 +308,13 @@ listener.isConnected();
 Documentation for the set of API entries is generated from the built-in references,
 and is listed in the [`docs` directory](/docs) of this repository.
 Detailed documentation with description, payload, and result format details is
-available on [docs.taskcluster.net](http://docs.taskcluster.net).
+available on this cluster's documentation site.
 
 ## Providing Options
 
 Some API end-points may take a query string. This is indicated in the signature
 as `[options]`. These options are always _optional_, commonly used for
-continuation tokens when paging a list. For a list of supported options,
-consult the API documentation on `docs.taskcluster.net`.
+continuation tokens when paging a list.
 
 ## Construct URLs
 
@@ -464,8 +463,8 @@ shared between multiple clients, and are inherited via `.use`.
 
 #### OIDCCredentialAgent
 
-[Taskcluster-Login](https://docs.taskcluster.net/reference/integrations/taskcluster-login/docs/getting-user-creds)
-provides Taskcluster credentials in exchange for an OIDC `access_token`. To use
+This cluster's login services
+provides credentials in exchange for an OIDC `access_token`. To use
 this functionality, construct an `OIDCCredentialAgent` and pass it to the
 client. This agent will automatically fetch credentials as needed.
 
