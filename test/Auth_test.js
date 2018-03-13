@@ -22,7 +22,7 @@ describe('Auth', function() {
 
   it('should build signed URL', () => {
     expect(auth.buildSignedUrl(auth.client, 'test'))
-      .to.eventually.match(new RegExp('^https://auth.taskcluster.net/v1/clients/test\\?bewit'));
+      .to.eventually.match(new RegExp(`^${process.env.BASE_URL}/auth/v1/clients/test\\?bewit`));
   });
 
   it('should request from signed URL', () => {

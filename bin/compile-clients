@@ -1,6 +1,5 @@
 #! /usr/bin/env node
 
-const got = require('got');
 const stringify = require('javascript-stringify');
 const { compile } = require('ejs');
 const omit = require('object.omit');

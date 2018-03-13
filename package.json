@@ -10,20 +10,19 @@
     "lib"
   ],
   "scripts": {
-    "build": "neutrino build",
-    "docs": "rm -f docs/* && bin/generate-docs",
-    "compile-clients": "rm -f src/clients/* && bin/compile-clients",
+    "build": "neutrino build --require dotenv/config",
+    "docs": "rm -f docs/* && node -r dotenv/config bin/generate-docs",
+    "compile-clients": "rm -f src/clients/* && node -r dotenv/config bin/compile-clients",
     "lint": "neutrino lint",
-    "list-clients": "bin/list-clients",
+    "list-clients": "node -r dotenv/config bin/list-clients",
     "prepare": "yarn build",
-    "show-client": "bin/show-client",
-    "test": "neutrino test",
+    "show-client": "node -r dotenv/config bin/show-client",
+    "test": "neutrino test --require dotenv/config",
     "update-all": "yarn compile-clients && yarn build && yarn docs"
   },
   "lint-staged": {
     "*.js": [
-      "neutrino lint --fix",
-      "git add"
+      "neutrino lint"
     ]
   },
   "devDependencies": {
@@ -33,6 +32,7 @@
     "chai-as-promised": "^7.1.1",
     "cliff": "^0.1.10",
     "common-tags": "^1.4.0",
+    "dotenv": "^5.0.1",
     "ejs": "^2.5.7",
     "got": "^7.1.0",
     "husky": "^0.14.3",
