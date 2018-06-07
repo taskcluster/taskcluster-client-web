@@ -1,7 +1,7 @@
 import hawk from 'hawk';
 
-const JSON_CONTENT =
-  /^(application\/(json|x-javascript)|text\/(x-)?javascript|x-json)(;.*)?$/;
+/* eslint-disable-next-line max-len */
+const JSON_CONTENT = /^(application\/(json|x-javascript)|text\/(x-)?javascript|x-json)(;.*)?$/;
 const defaults = {
   credentials: 'omit',
   retries: 5,
@@ -47,7 +47,7 @@ export default (url, opts = {}) => {
   const { delayFactor, randomizationFactor, maxDelay, retries } = options;
 
   if (typeof options.credentials !== 'string') {
-    const header = hawk.client.header(url, options.method.toUpperCase(), {
+    const { header } = hawk.client.header(url, options.method.toUpperCase(), {
       credentials: {
         id: options.credentials.clientId,
         key: options.credentials.accessToken,
@@ -57,7 +57,7 @@ export default (url, opts = {}) => {
     });
 
     options.credentials = 'omit';
-    options.headers.Authorization = header.field;
+    options.headers.Authorization = header;
   }
 
   return new Promise((resolve, reject) => {
