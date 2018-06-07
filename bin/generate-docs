@@ -1,5 +1,9 @@
 #!/usr/bin/env node
 
+if (!process.env.TASKCLUSTER_ROOT_URL) {
+  throw new Error('Missing required environment variable TASKCLUSTER_ROOT_URL');
+}
+
 const parse = require('json-schema-to-markdown');
 const tags = require('common-tags');
 const { createWriteStream, writeFileSync } = require('fs');
@@ -19,8 +23,8 @@ const renderMethods = (stream, reference, name) => {
     ## ${name} Client
       
     \`\`\`js
-    // Create ${name} client instance with default baseUrl:
-    // ${reference.baseUrl}
+    // Create ${name} client instance with default rootUrl:
+    // ${process.env.TASKCLUSTER_ROOT_URL}
     
     const ${instanceName} = new taskcluster.${name}(options);
     \`\`\`

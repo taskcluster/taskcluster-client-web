@@ -1,3 +1,7 @@
+if (!process.env.TASKCLUSTER_ROOT_URL) {
+  throw new Error('Missing required environment variable TASKCLUSTER_ROOT_URL');
+}
+
 const got = require('got');
 
 const MANIFEST_URL = process.env.MANIFEST_URL;

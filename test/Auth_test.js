@@ -166,7 +166,7 @@ describe('Auth', function() {
   it('should request with authentication and query string', () => {
     return auth
       .listClients({ prefix: 'abc' })
-      .then(({ clients }) => expect(clients).to.deep.equal([]));
+      .then(clients => expect(clients).to.deep.equal({ clients: [] }));
   });
 
   it('should fetch using authorized scopes', () => {

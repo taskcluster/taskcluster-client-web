@@ -3,7 +3,7 @@ export default {
   $schema: 'https://taskcluster.net/reference/base/v1/api-reference.json#',
   title: 'Fake API',
   description: 'Fake API',
-  baseUrl: 'https://taskcluster.net/fake/v1',
+  serviceName: 'fake',
   entries: [
     {
       type: 'function',

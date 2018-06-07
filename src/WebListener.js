@@ -7,7 +7,7 @@ export default class WebListener {
     this.options = {
       baseUrl: 'wss://events.taskcluster.net/v1',
       reconnectInterval: 5000,
-      ...options
+      ...options,
     };
 
     this._bindings = [];
@@ -36,7 +36,9 @@ export default class WebListener {
     }
 
     const { baseUrl } = this.options;
-    const socketUrl = baseUrl.endsWith('/') ? `${baseUrl}listen/websocket` : `${baseUrl}/listen/websocket`;
+    const socketUrl = baseUrl.endsWith('/')
+      ? `${baseUrl}listen/websocket`
+      : `${baseUrl}/listen/websocket`;
 
     this.socket = new WebSocket(socketUrl);
     this.socket.addEventListener('message', this.handleMessage);
@@ -54,8 +56,9 @@ export default class WebListener {
       });
     });
 
-    const awaitingBindings = Promise.all(this._bindings.map(binding => this._send('bind', binding)));
-
+    const awaitingBindings = Promise.all(
+      this._bindings.map(binding => this._send('bind', binding))
+    );
     const isReady = new Promise((resolve, reject) => {
       const offReady = this.on('ready', resolve);
       const offError = this.on('error', reject);
@@ -72,19 +75,16 @@ export default class WebListener {
     });
 
     // When all bindings have been bound, we're just waiting for 'ready'
-    return awaitingBindings
-      .then(() => {
-        clearInterval(this.connectInterval);
-        this.connectInterval = setInterval(() => {
-          if (!this.isConnected()) {
-            this
-              .connect()
-              .then(() => this.emitter.emit('reconnect'));
-          }
-        }, this.options.reconnectInterval);
+    return awaitingBindings.then(() => {
+      clearInterval(this.connectInterval);
+      this.connectInterval = setInterval(() => {
+        if (!this.isConnected()) {
+          this.connect().then(() => this.emitter.emit('reconnect'));
+        }
+      }, this.options.reconnectInterval);
 
-        return isReady;
-      });
+      return isReady;
+    });
   }
 
   _send(method, options) {
@@ -103,7 +103,7 @@ export default class WebListener {
   }
 
   // eslint-disable-next-line consistent-return
-  handleMessage = (e) => {
+  handleMessage = e => {
     let message;
 
     try {
@@ -118,24 +118,23 @@ export default class WebListener {
       return this.emitter.emit('error', new Error('Message has no id'));
     }
 
-    this._pendingPromises = this._pendingPromises
-      .filter((promise) => {
-        // Only keep promises that are still pending,
-        // filter out the ones we are handling right now
-        if (promise.id !== message.id) {
-          return promise;
-        }
+    this._pendingPromises = this._pendingPromises.filter(promise => {
+      // Only keep promises that are still pending,
+      // filter out the ones we are handling right now
+      if (promise.id !== message.id) {
+        return promise;
+      }
 
-        if (message.event === 'error') {
-          promise.reject(message.payload);
-        } else {
-          promise.resolve(message.payload);
-        }
+      if (message.event === 'error') {
+        promise.reject(message.payload);
+      } else {
+        promise.resolve(message.payload);
+      }
 
-        // These promises are no longer pending, they are handled.
-        // Filter them out.
-        return false;
-      });
+      // These promises are no longer pending, they are handled.
+      // Filter them out.
+      return false;
+    });
 
     switch (message.event) {
       case 'ready':
@@ -159,9 +158,7 @@ export default class WebListener {
     this._bindings.push(binding);
 
     // If already open send the bind request
-    return this.isOpen() ?
-      this._send('bind', binding) :
-      Promise.resolve();
+    return this.isOpen() ? this._send('bind', binding) : Promise.resolve();
   }
 
   close() {
@@ -169,7 +166,7 @@ export default class WebListener {
       return Promise.resolve();
     }
 
-    return new Promise((resolve) => {
+    return new Promise(resolve => {
       clearInterval(this.connectInterval);
       this.emitter.on('close', resolve);
       this.socket.close();
