@@ -1,3 +1,4 @@
+import { api } from 'taskcluster-lib-urls';
 import Emitter from './emitter';
 import { v4 } from './utils';
 
@@ -5,10 +6,14 @@ export default class WebListener {
   constructor(options) {
     this.emitter = new Emitter();
     this.options = {
-      baseUrl: 'wss://events.taskcluster.net/v1',
+      rootUrl: 'wss://events.taskcluster.net/v1',
       reconnectInterval: 5000,
       ...options,
     };
+
+    if (!this.options.rootUrl) {
+      throw new Error('Missing required option "rootUrl"');
+    }
 
     this._bindings = [];
     this._pendingPromises = [];
@@ -35,10 +40,12 @@ export default class WebListener {
       return Promise.resolve();
     }
 
-    const { baseUrl } = this.options;
-    const socketUrl = baseUrl.endsWith('/')
-      ? `${baseUrl}listen/websocket`
-      : `${baseUrl}/listen/websocket`;
+    const socketUrl = api(
+      this.options.rootUrl,
+      'events',
+      'v1',
+      '/listen/websocket'
+    ).replace('http', 'ws');
 
     this.socket = new WebSocket(socketUrl);
     this.socket.addEventListener('message', this.handleMessage);
