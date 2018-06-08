@@ -1,11 +1,11 @@
 # Documentation
 
 The documentation in this directory is automatically generated from the API entries
-generated from the Manifest Reference specified by the `MANIFEST_URL` environment variable.
+generated from the [Manifest Reference](http://references.taskcluster.net/manifest.json).
 Detailed documentation with description, payload, and result formats is available on
-the documentation site for this cluster.
+[Taskcluster Docs](https://docs.taskcluster.net/).
 
-On the documentation site entries often have a
+On the [documentation site](https://docs.taskcluster.net/) entries often have a
 _signature_; you'll find that it corresponds with the signatures below. Note that all
 the methods return a `Promise`. A method marked with `Promise Result` is a promise that
 resolves with the API result. A method marked with `Promise Nothing` will also return a
