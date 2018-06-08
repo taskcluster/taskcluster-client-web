@@ -12,7 +12,7 @@
   "scripts": {
     "build": "neutrino build --require dotenv/config",
     "docs": "rm -f docs/* && node -r dotenv/config bin/generate-docs",
-    "compile-clients": "rm -f src/clients/* && node -r dotenv/config bin/compile-clients",
+    "compile-clients": "rm -f src/clients/* && node -r dotenv/config bin/compile-clients && yarn lint --fix",
     "lint": "neutrino lint",
     "list-clients": "node -r dotenv/config bin/list-clients",
     "precommit": "neutrino stage",

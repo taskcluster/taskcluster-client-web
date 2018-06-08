@@ -5,7 +5,6 @@ import Client from '../Client';
 export default class Login extends Client {
   constructor(options = {}) {
     super({
-      rootUrl: 'https://taskcluster.net',
       serviceName: 'login',
       serviceVersion: 'v1',
       exchangePrefix: '',

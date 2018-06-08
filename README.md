@@ -463,7 +463,7 @@ shared between multiple clients, and are inherited via `.use`.
 
 #### OIDCCredentialAgent
 
-This cluster's login services
+This cluster's login service
 provides credentials in exchange for an OIDC `access_token`. To use
 this functionality, construct an `OIDCCredentialAgent` and pass it to the
 client. This agent will automatically fetch credentials as needed.

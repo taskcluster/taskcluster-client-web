@@ -5,7 +5,6 @@ import Client from '../Client';
 export default class Queue extends Client {
   constructor(options = {}) {
     super({
-      rootUrl: 'https://taskcluster.net',
       serviceName: 'queue',
       serviceVersion: 'v1',
       exchangePrefix: '',

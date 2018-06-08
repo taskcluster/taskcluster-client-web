@@ -5,7 +5,6 @@ import Client from '../Client';
 export default class GithubEvents extends Client {
   constructor(options = {}) {
     super({
-      rootUrl: 'https://taskcluster.net',
       serviceName: 'github',
       serviceVersion: 'v1',
       exchangePrefix: 'exchange/taskcluster-github/v1/',

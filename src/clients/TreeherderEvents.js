@@ -5,7 +5,6 @@ import Client from '../Client';
 export default class TreeherderEvents extends Client {
   constructor(options = {}) {
     super({
-      rootUrl: 'https://taskcluster.net',
       serviceName: 'treeherder',
       serviceVersion: 'v1',
       exchangePrefix: 'exchange/taskcluster-treeherder/v1/',

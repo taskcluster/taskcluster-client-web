@@ -1,4 +1,3 @@
-import { withRootUrl } from 'taskcluster-lib-urls';
 import fetch from '../fetch';
 
 /**
@@ -9,14 +8,11 @@ import fetch from '../fetch';
  * with many Client instances.
  */
 export default class OIDCCredentialAgent {
-  constructor({
-    accessToken,
-    url = withRootUrl(process.env.TASKCLUSTER_ROOT_URL).api(
-      'login',
-      'v1',
-      'oidc-credentials'
-    ),
-  }) {
+  constructor({ accessToken, url }) {
+    if (!this.url) {
+      throw new Error('Missing required option "url"');
+    }
+
     this._accessToken = accessToken;
     this.url = url;
   }

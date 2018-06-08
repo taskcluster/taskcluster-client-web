@@ -5,7 +5,6 @@ import Client from '../Client';
 export default class Hooks extends Client {
   constructor(options = {}) {
     super({
-      rootUrl: 'https://taskcluster.net',
       serviceName: 'hooks',
       serviceVersion: 'v1',
       exchangePrefix: '',

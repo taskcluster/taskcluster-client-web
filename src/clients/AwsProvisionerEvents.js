@@ -5,7 +5,6 @@ import Client from '../Client';
 export default class AwsProvisionerEvents extends Client {
   constructor(options = {}) {
     super({
-      rootUrl: 'https://taskcluster.net',
       serviceName: 'aws-provisioner',
       serviceVersion: 'v1',
       exchangePrefix: 'exchange/taskcluster-aws-provisioner/v1/',

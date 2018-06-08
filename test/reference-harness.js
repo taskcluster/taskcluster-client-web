@@ -1,6 +1,6 @@
 export default {
   version: 0,
-  $schema: 'https://taskcluster.net/reference/base/v1/api-reference.json#',
+  $schema: 'https://taskcluster.net/references/base/v1/api-reference.json#',
   title: 'Fake API',
   description: 'Fake API',
   serviceName: 'fake',
@@ -28,7 +28,7 @@ export default {
       title: 'Test Post',
       description: 'Place we can call to test POST',
       scopes: [],
-      input: 'https://taskcluster.net/schemas/nothing.json'
+      input: '/schemas/v1/nothing.json'
     },
     {
       type: 'function',

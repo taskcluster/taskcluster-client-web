@@ -5,7 +5,6 @@ import Client from '../Client';
 export default class Notify extends Client {
   constructor(options = {}) {
     super({
-      rootUrl: 'https://taskcluster.net',
       serviceName: 'notify',
       serviceVersion: 'v1',
       exchangePrefix: '',

@@ -5,7 +5,6 @@ import Client from '../Client';
 export default class PurgeCache extends Client {
   constructor(options = {}) {
     super({
-      rootUrl: 'https://taskcluster.net',
       serviceName: 'purge-cache',
       serviceVersion: 'v1',
       exchangePrefix: '',

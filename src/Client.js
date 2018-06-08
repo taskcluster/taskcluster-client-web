@@ -5,7 +5,6 @@ import fetch from './fetch';
 
 export default class Client {
   static defaults = {
-    rootUrl: process.env.TASKCLUSTER_ROOT_URL,
     credentials: null,
     authorizedScopes: null,
     timeout: 30 * 1000,
@@ -32,6 +31,10 @@ export default class Client {
       ...Client.defaults,
       ...options,
     };
+
+    if (!this.options.rootUrl) {
+      throw new Error('Missing required option "rootUrl"');
+    }
 
     if (
       this.options.randomizationFactor < 0 ||

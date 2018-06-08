@@ -4,14 +4,12 @@ if (!process.env.TASKCLUSTER_ROOT_URL) {
   throw new Error('Missing required environment variable TASKCLUSTER_ROOT_URL');
 }
 
-import { withRootUrl } from 'taskcluster-lib-urls';
 const parse = require('json-schema-to-markdown');
 const tags = require('common-tags');
 const { createWriteStream, writeFileSync } = require('fs');
 const { join } = require('path');
 const fetchApis = require('./fetch-apis');
 
-const urls = withRootUrl(process.env.TASKCLUSTER_ROOT_URL);
 const renderMethods = (stream, reference, name) => {
   const methods = reference.entries.filter(entry => entry.type === 'function');
 
@@ -25,8 +23,7 @@ const renderMethods = (stream, reference, name) => {
     ## ${name} Client
       
     \`\`\`js
-    // Create ${name} client instance with default rootUrl:
-    // ${process.env.TASKCLUSTER_ROOT_URL}
+    // Create ${name} client instance:
     
     const ${instanceName} = new taskcluster.${name}(options);
     \`\`\`
@@ -129,9 +126,9 @@ fetchApis()
 The documentation in this directory is automatically generated from the API entries
 generated from the [Manifest Reference](${process.env.MANIFEST_URL}).
 Detailed documentation with description, payload, and result formats is available on
-[${urls.docs('/')}](${urls.docs('/')}).
+[Taskcluster Docs](https://docs.taskcluster.net/).
 
-On the [documentation site](${urls.docs('/')}) entries often have a
+On the [documentation site](https://docs.taskcluster.net/) entries often have a
 _signature_; you'll find that it corresponds with the signatures below. Note that all
 the methods return a \`Promise\`. A method marked with \`Promise Result\` is a promise that
 resolves with the API result. A method marked with \`Promise Nothing\` will also return a
