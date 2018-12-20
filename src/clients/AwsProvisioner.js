@@ -26,6 +26,7 @@ export default class AwsProvisioner extends Client {
     this.backendStatus.entry = {type:'function',method:'get',route:'/backend-status',query:[],args:[],name:'backendStatus',stability:'experimental',output:true}; // eslint-disable-line
     this.ping.entry = {type:'function',method:'get',route:'/ping',query:[],args:[],name:'ping',stability:'stable'}; // eslint-disable-line
   }
+
   /* eslint-disable max-len */
   // Return a list of worker types, including some summary information about
   // current capacity for each.  While this list includes all defined worker types,
@@ -37,6 +38,7 @@ export default class AwsProvisioner extends Client {
 
     return this.request(this.listWorkerTypeSummaries.entry, args);
   }
+
   /* eslint-disable max-len */
   // Create a worker type.  A worker type contains all the configuration
   // needed for the provisioner to manage the instances.  Each worker type
@@ -64,6 +66,7 @@ export default class AwsProvisioner extends Client {
 
     return this.request(this.createWorkerType.entry, args);
   }
+
   /* eslint-disable max-len */
   // Provide a new copy of a worker type to replace the existing one.
   // This will overwrite the existing worker type definition if there
@@ -81,6 +84,7 @@ export default class AwsProvisioner extends Client {
 
     return this.request(this.updateWorkerType.entry, args);
   }
+
   /* eslint-disable max-len */
   // This method is provided to allow workers to see when they were
   // last modified.  The value provided through UserData can be
@@ -93,6 +97,7 @@ export default class AwsProvisioner extends Client {
 
     return this.request(this.workerTypeLastModified.entry, args);
   }
+
   /* eslint-disable max-len */
   // Retrieve a copy of the requested worker type definition.
   // This copy contains a lastModified field as well as the worker
@@ -105,6 +110,7 @@ export default class AwsProvisioner extends Client {
 
     return this.request(this.workerType.entry, args);
   }
+
   /* eslint-disable max-len */
   // Delete a worker type definition.  This method will only delete
   // the worker type definition from the storage table.  The actual
@@ -122,6 +128,7 @@ export default class AwsProvisioner extends Client {
 
     return this.request(this.removeWorkerType.entry, args);
   }
+
   /* eslint-disable max-len */
   // Return a list of string worker type names.  These are the names
   // of all managed worker types known to the provisioner.  This does
@@ -133,6 +140,7 @@ export default class AwsProvisioner extends Client {
 
     return this.request(this.listWorkerTypes.entry, args);
   }
+
   /* eslint-disable max-len */
   // Insert a secret into the secret storage.  The supplied secrets will
   // be provided verbatime via `getSecret`, while the supplied scopes will
@@ -145,6 +153,7 @@ export default class AwsProvisioner extends Client {
 
     return this.request(this.createSecret.entry, args);
   }
+
   /* eslint-disable max-len */
   // Retrieve a secret from storage.  The result contains any passwords or
   // other restricted information verbatim as well as a temporary credential
@@ -158,6 +167,7 @@ export default class AwsProvisioner extends Client {
 
     return this.request(this.getSecret.entry, args);
   }
+
   /* eslint-disable max-len */
   // An instance will report in by giving its instance id as well
   // as its security token.  The token is given and checked to ensure
@@ -170,6 +180,7 @@ export default class AwsProvisioner extends Client {
 
     return this.request(this.instanceStarted.entry, args);
   }
+
   /* eslint-disable max-len */
   // Remove a secret.  After this call, a call to `getSecret` with the given
   // token will return no information.
@@ -182,6 +193,7 @@ export default class AwsProvisioner extends Client {
 
     return this.request(this.removeSecret.entry, args);
   }
+
   /* eslint-disable max-len */
   // This method returns a preview of all possible launch specifications
   // that this worker type definition could submit to EC2.  It is used to
@@ -193,6 +205,7 @@ export default class AwsProvisioner extends Client {
 
     return this.request(this.getLaunchSpecs.entry, args);
   }
+
   /* eslint-disable max-len */
   // Return the state of a given workertype as stored by the provisioner.
   // This state is stored as three lists: 1 for running instances, 1 for
@@ -204,6 +217,7 @@ export default class AwsProvisioner extends Client {
 
     return this.request(this.state.entry, args);
   }
+
   /* eslint-disable max-len */
   // This endpoint is used to show when the last time the provisioner
   // has checked in.  A check in is done through the deadman's snitch
@@ -217,6 +231,7 @@ export default class AwsProvisioner extends Client {
 
     return this.request(this.backendStatus.entry, args);
   }
+
   /* eslint-disable max-len */
   // Respond without doing anything.
   // This endpoint is used to check that the service is up.

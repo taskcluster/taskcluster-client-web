@@ -16,6 +16,7 @@ export default class Secrets extends Client {
     this.get.entry = {type:'function',method:'get',route:'/secret/<name>',query:[],args:['name'],name:'get',stability:'stable',output:true,scopes:'secrets:get:<name>'}; // eslint-disable-line
     this.list.entry = {type:'function',method:'get',route:'/secrets',query:['continuationToken','limit'],args:[],name:'list',stability:'stable',output:true}; // eslint-disable-line
   }
+
   /* eslint-disable max-len */
   // Respond without doing anything.
   // This endpoint is used to check that the service is up.
@@ -25,6 +26,7 @@ export default class Secrets extends Client {
 
     return this.request(this.ping.entry, args);
   }
+
   /* eslint-disable max-len */
   // Set the secret associated with some key.  If the secret already exists, it is
   // updated instead.
@@ -34,6 +36,7 @@ export default class Secrets extends Client {
 
     return this.request(this.set.entry, args);
   }
+
   /* eslint-disable max-len */
   // Delete the secret associated with some key.
   /* eslint-enable max-len */
@@ -42,6 +45,7 @@ export default class Secrets extends Client {
 
     return this.request(this.remove.entry, args);
   }
+
   /* eslint-disable max-len */
   // Read the secret associated with some key.  If the secret has recently
   // expired, the response code 410 is returned.  If the caller lacks the
@@ -53,6 +57,7 @@ export default class Secrets extends Client {
 
     return this.request(this.get.entry, args);
   }
+
   /* eslint-disable max-len */
   // List the names of all secrets.
   // By default this end-point will try to return up to 1000 secret names in one

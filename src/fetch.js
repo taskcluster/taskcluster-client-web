@@ -15,11 +15,10 @@ const defaults = {
 };
 const handleResponse = response =>
   Promise.resolve(response)
-    .then(
-      () =>
-        JSON_CONTENT.test(response.headers.get('Content-Type'))
-          ? response.json()
-          : null
+    .then(() =>
+      JSON_CONTENT.test(response.headers.get('Content-Type'))
+        ? response.json()
+        : null
     )
     .then(json => {
       if (response.ok) {

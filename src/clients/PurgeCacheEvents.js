@@ -11,6 +11,7 @@ export default class PurgeCacheEvents extends Client {
       ...options,
     });
   }
+
   /* eslint-disable max-len */
   // When a cache purge is requested  a message will be posted on this
   // exchange with designated `provisionerId` and `workerType` in the

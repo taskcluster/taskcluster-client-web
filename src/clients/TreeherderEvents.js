@@ -11,6 +11,7 @@ export default class TreeherderEvents extends Client {
       ...options,
     });
   }
+
   /* eslint-disable max-len */
   // When a task run is scheduled or resolved, a message is posted to
   // this exchange in a Treeherder consumable format.

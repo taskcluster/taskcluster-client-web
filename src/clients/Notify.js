@@ -15,6 +15,7 @@ export default class Notify extends Client {
     this.irc.entry = {type:'function',method:'post',route:'/irc',query:[],args:[],name:'irc',stability:'experimental',scopes:{'if':'channelRequest',then:'notify:irc-channel:<channel>','else':'notify:irc-user:<user>'},input:true}; // eslint-disable-line
     this.ping.entry = {type:'function',method:'get',route:'/ping',query:[],args:[],name:'ping',stability:'stable'}; // eslint-disable-line
   }
+
   /* eslint-disable max-len */
   // Send an email to `address`. The content is markdown and will be rendered
   // to HTML, but both the HTML and raw markdown text will be sent in the
@@ -26,6 +27,7 @@ export default class Notify extends Client {
 
     return this.request(this.email.entry, args);
   }
+
   /* eslint-disable max-len */
   // Publish a message on pulse with the given `routingKey`.
   /* eslint-enable max-len */
@@ -34,6 +36,7 @@ export default class Notify extends Client {
 
     return this.request(this.pulse.entry, args);
   }
+
   /* eslint-disable max-len */
   // Post a message on IRC to a specific channel or user, or a specific user
   // on a specific channel.
@@ -50,6 +53,7 @@ export default class Notify extends Client {
 
     return this.request(this.irc.entry, args);
   }
+
   /* eslint-disable max-len */
   // Respond without doing anything.
   // This endpoint is used to check that the service is up.

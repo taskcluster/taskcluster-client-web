@@ -15,6 +15,7 @@ export default class PurgeCache extends Client {
     this.purgeRequests.entry = {type:'function',method:'get',route:'/purge-cache/<provisionerId>/<workerType>',query:['since'],args:['provisionerId','workerType'],name:'purgeRequests',stability:'stable',output:true}; // eslint-disable-line
     this.ping.entry = {type:'function',method:'get',route:'/ping',query:[],args:[],name:'ping',stability:'stable'}; // eslint-disable-line
   }
+
   /* eslint-disable max-len */
   // Publish a purge-cache message to purge caches named `cacheName` with
   // `provisionerId` and `workerType` in the routing-key. Workers should
@@ -25,6 +26,7 @@ export default class PurgeCache extends Client {
 
     return this.request(this.purgeCache.entry, args);
   }
+
   /* eslint-disable max-len */
   // This is useful mostly for administors to view
   // the set of open purge requests. It should not
@@ -37,6 +39,7 @@ export default class PurgeCache extends Client {
 
     return this.request(this.allPurgeRequests.entry, args);
   }
+
   /* eslint-disable max-len */
   // List of caches that need to be purged if they are from before
   // a certain time. This is safe to be used in automation from
@@ -47,6 +50,7 @@ export default class PurgeCache extends Client {
 
     return this.request(this.purgeRequests.entry, args);
   }
+
   /* eslint-disable max-len */
   // Respond without doing anything.
   // This endpoint is used to check that the service is up.

@@ -11,6 +11,7 @@ export default class QueueEvents extends Client {
       ...options,
     });
   }
+
   /* eslint-disable max-len */
   // When a task is created or just defined a message is posted to this
   // exchange.
@@ -25,6 +26,7 @@ export default class QueueEvents extends Client {
 
     return this.normalizePattern(entry, pattern);
   }
+
   /* eslint-disable max-len */
   // When a task becomes `pending` a message is posted to this exchange.
   // This is useful for workers who doesn't want to constantly poll the queue
@@ -38,6 +40,7 @@ export default class QueueEvents extends Client {
 
     return this.normalizePattern(entry, pattern);
   }
+
   /* eslint-disable max-len */
   // Whenever a task is claimed by a worker, a run is started on the worker,
   // and a message is posted on this exchange.
@@ -47,6 +50,7 @@ export default class QueueEvents extends Client {
 
     return this.normalizePattern(entry, pattern);
   }
+
   /* eslint-disable max-len */
   // Whenever the `createArtifact` end-point is called, the queue will create
   // a record of the artifact and post a message on this exchange. All of this
@@ -70,6 +74,7 @@ export default class QueueEvents extends Client {
 
     return this.normalizePattern(entry, pattern);
   }
+
   /* eslint-disable max-len */
   // When a task is successfully completed by a worker a message is posted
   // this exchange.
@@ -82,6 +87,7 @@ export default class QueueEvents extends Client {
 
     return this.normalizePattern(entry, pattern);
   }
+
   /* eslint-disable max-len */
   // When a task ran, but failed to complete successfully a message is posted
   // to this exchange. This is same as worker ran task-specific code, but the
@@ -92,6 +98,7 @@ export default class QueueEvents extends Client {
 
     return this.normalizePattern(entry, pattern);
   }
+
   /* eslint-disable max-len */
   // Whenever Taskcluster fails to run a message is posted to this exchange.
   // This happens if the task isn't completed before its `deadlìne`,
@@ -105,6 +112,7 @@ export default class QueueEvents extends Client {
 
     return this.normalizePattern(entry, pattern);
   }
+
   /* eslint-disable max-len */
   // A message is published on task-group-resolved whenever all submitted
   // tasks (whether scheduled or unscheduled) for a given task group have

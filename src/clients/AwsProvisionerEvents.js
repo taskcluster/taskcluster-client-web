@@ -11,6 +11,7 @@ export default class AwsProvisionerEvents extends Client {
       ...options,
     });
   }
+
   /* eslint-disable max-len */
   // When a new `workerType` is created a message will be published to this
   // exchange.
@@ -20,6 +21,7 @@ export default class AwsProvisionerEvents extends Client {
 
     return this.normalizePattern(entry, pattern);
   }
+
   /* eslint-disable max-len */
   // When a `workerType` is updated a message will be published to this
   // exchange.
@@ -29,6 +31,7 @@ export default class AwsProvisionerEvents extends Client {
 
     return this.normalizePattern(entry, pattern);
   }
+
   /* eslint-disable max-len */
   // When a `workerType` is removed a message will be published to this
   // exchange.

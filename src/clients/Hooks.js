@@ -23,6 +23,7 @@ export default class Hooks extends Client {
     this.triggerHookWithToken.entry = {type:'function',method:'post',route:'/hooks/<hookGroupId>/<hookId>/trigger/<token>',query:[],args:['hookGroupId','hookId','token'],name:'triggerHookWithToken',stability:'stable',input:true,output:true}; // eslint-disable-line
     this.ping.entry = {type:'function',method:'get',route:'/ping',query:[],args:[],name:'ping',stability:'stable'}; // eslint-disable-line
   }
+
   /* eslint-disable max-len */
   // This endpoint will return a list of all hook groups with at least one hook.
   /* eslint-enable max-len */
@@ -31,6 +32,7 @@ export default class Hooks extends Client {
 
     return this.request(this.listHookGroups.entry, args);
   }
+
   /* eslint-disable max-len */
   // This endpoint will return a list of all the hook definitions within a
   // given hook group.
@@ -40,6 +42,7 @@ export default class Hooks extends Client {
 
     return this.request(this.listHooks.entry, args);
   }
+
   /* eslint-disable max-len */
   // This endpoint will return the hook definition for the given `hookGroupId`
   // and hookId.
@@ -49,6 +52,7 @@ export default class Hooks extends Client {
 
     return this.request(this.hook.entry, args);
   }
+
   /* eslint-disable max-len */
   // This endpoint will return the current status of the hook.  This represents a
   // snapshot in time and may vary from one call to the next.
@@ -58,6 +62,7 @@ export default class Hooks extends Client {
 
     return this.request(this.getHookStatus.entry, args);
   }
+
   /* eslint-disable max-len */
   // This endpoint will create a new hook.
   // The caller's credentials must include the role that will be used to
@@ -69,6 +74,7 @@ export default class Hooks extends Client {
 
     return this.request(this.createHook.entry, args);
   }
+
   /* eslint-disable max-len */
   // This endpoint will update an existing hook.  All fields except
   // `hookGroupId` and `hookId` can be modified.
@@ -78,6 +84,7 @@ export default class Hooks extends Client {
 
     return this.request(this.updateHook.entry, args);
   }
+
   /* eslint-disable max-len */
   // This endpoint will remove a hook definition.
   /* eslint-enable max-len */
@@ -86,6 +93,7 @@ export default class Hooks extends Client {
 
     return this.request(this.removeHook.entry, args);
   }
+
   /* eslint-disable max-len */
   // This endpoint will trigger the creation of a task from a hook definition.
   // The HTTP payload must match the hooks `triggerSchema`.  If it does, it is
@@ -97,6 +105,7 @@ export default class Hooks extends Client {
 
     return this.request(this.triggerHook.entry, args);
   }
+
   /* eslint-disable max-len */
   // Retrieve a unique secret token for triggering the specified hook. This
   // token can be deactivated with `resetTriggerToken`.
@@ -106,6 +115,7 @@ export default class Hooks extends Client {
 
     return this.request(this.getTriggerToken.entry, args);
   }
+
   /* eslint-disable max-len */
   // Reset the token for triggering a given hook. This invalidates token that
   // may have been issued via getTriggerToken with a new token.
@@ -115,6 +125,7 @@ export default class Hooks extends Client {
 
     return this.request(this.resetTriggerToken.entry, args);
   }
+
   /* eslint-disable max-len */
   // This endpoint triggers a defined hook with a valid token.
   // The HTTP payload must match the hooks `triggerSchema`.  If it does, it is
@@ -126,6 +137,7 @@ export default class Hooks extends Client {
 
     return this.request(this.triggerHookWithToken.entry, args);
   }
+
   /* eslint-disable max-len */
   // Respond without doing anything.
   // This endpoint is used to check that the service is up.

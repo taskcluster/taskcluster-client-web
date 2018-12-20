@@ -11,6 +11,7 @@ export default class GithubEvents extends Client {
       ...options,
     });
   }
+
   /* eslint-disable max-len */
   // When a GitHub pull request event is posted it will be broadcast on this
   // exchange with the designated `organization` and `repository`
@@ -21,6 +22,7 @@ export default class GithubEvents extends Client {
 
     return this.normalizePattern(entry, pattern);
   }
+
   /* eslint-disable max-len */
   // When a GitHub push event is posted it will be broadcast on this
   // exchange with the designated `organization` and `repository`
@@ -31,6 +33,7 @@ export default class GithubEvents extends Client {
 
     return this.normalizePattern(entry, pattern);
   }
+
   /* eslint-disable max-len */
   // When a GitHub release event is posted it will be broadcast on this
   // exchange with the designated `organization` and `repository`
