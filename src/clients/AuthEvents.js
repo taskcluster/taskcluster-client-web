@@ -11,6 +11,7 @@ export default class AuthEvents extends Client {
       ...options,
     });
   }
+
   /* eslint-disable max-len */
   // Message that a new client has been created.
   /* eslint-enable max-len */
@@ -19,6 +20,7 @@ export default class AuthEvents extends Client {
 
     return this.normalizePattern(entry, pattern);
   }
+
   /* eslint-disable max-len */
   // Message that a new client has been updated.
   /* eslint-enable max-len */
@@ -27,6 +29,7 @@ export default class AuthEvents extends Client {
 
     return this.normalizePattern(entry, pattern);
   }
+
   /* eslint-disable max-len */
   // Message that a new client has been deleted.
   /* eslint-enable max-len */
@@ -35,6 +38,7 @@ export default class AuthEvents extends Client {
 
     return this.normalizePattern(entry, pattern);
   }
+
   /* eslint-disable max-len */
   // Message that a new role has been created.
   /* eslint-enable max-len */
@@ -43,6 +47,7 @@ export default class AuthEvents extends Client {
 
     return this.normalizePattern(entry, pattern);
   }
+
   /* eslint-disable max-len */
   // Message that a new role has been updated.
   /* eslint-enable max-len */
@@ -51,6 +56,7 @@ export default class AuthEvents extends Client {
 
     return this.normalizePattern(entry, pattern);
   }
+
   /* eslint-disable max-len */
   // Message that a new role has been deleted.
   /* eslint-enable max-len */

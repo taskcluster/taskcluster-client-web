@@ -17,6 +17,7 @@ export default class Index extends Client {
     this.findArtifactFromTask.entry = {type:'function',method:'get',route:'/task/<indexPath>/artifacts/<name>',query:[],args:['indexPath','name'],name:'findArtifactFromTask',stability:'stable',scopes:{'if':'private',then:'queue:get-artifact:<name>'}}; // eslint-disable-line
     this.ping.entry = {type:'function',method:'get',route:'/ping',query:[],args:[],name:'ping',stability:'stable'}; // eslint-disable-line
   }
+
   /* eslint-disable max-len */
   // Find a task by index path, returning the highest-rank task with that path. If no
   // task exists for the given path, this API end-point will respond with a 404 status.
@@ -26,6 +27,7 @@ export default class Index extends Client {
 
     return this.request(this.findTask.entry, args);
   }
+
   /* eslint-disable max-len */
   // List the namespaces immediately under a given namespace.
   // This endpoint
@@ -39,6 +41,7 @@ export default class Index extends Client {
 
     return this.request(this.listNamespaces.entry, args);
   }
+
   /* eslint-disable max-len */
   // List the tasks immediately under a given namespace.
   // This endpoint
@@ -54,6 +57,7 @@ export default class Index extends Client {
 
     return this.request(this.listTasks.entry, args);
   }
+
   /* eslint-disable max-len */
   // Insert a task into the index.  If the new rank is less than the existing rank
   // at the given index path, the task is not indexed but the response is still 200 OK.
@@ -65,6 +69,7 @@ export default class Index extends Client {
 
     return this.request(this.insertTask.entry, args);
   }
+
   /* eslint-disable max-len */
   // Find a task by index path and redirect to the artifact on the most recent
   // run with the given `name`.
@@ -83,6 +88,7 @@ export default class Index extends Client {
 
     return this.request(this.findArtifactFromTask.entry, args);
   }
+
   /* eslint-disable max-len */
   // Respond without doing anything.
   // This endpoint is used to check that the service is up.

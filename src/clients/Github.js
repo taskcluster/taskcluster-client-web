@@ -19,6 +19,7 @@ export default class Github extends Client {
     this.createStatus.entry = {type:'function',method:'post',route:'/repository/<owner>/<repo>/statuses/<sha>',query:[],args:['owner','repo','sha'],name:'createStatus',stability:'experimental',input:true,scopes:'github:create-status:<owner>/<repo>'}; // eslint-disable-line
     this.createComment.entry = {type:'function',method:'post',route:'/repository/<owner>/<repo>/issues/<number>/comments',query:[],args:['owner','repo','number'],name:'createComment',stability:'experimental',input:true,scopes:'github:create-comment:<owner>/<repo>'}; // eslint-disable-line
   }
+
   /* eslint-disable max-len */
   // Respond without doing anything.
   // This endpoint is used to check that the service is up.
@@ -28,6 +29,7 @@ export default class Github extends Client {
 
     return this.request(this.ping.entry, args);
   }
+
   /* eslint-disable max-len */
   // Capture a GitHub event and publish it via pulse, if it's a push,
   // release or pull request.
@@ -37,6 +39,7 @@ export default class Github extends Client {
 
     return this.request(this.githubWebHookConsumer.entry, args);
   }
+
   /* eslint-disable max-len */
   // A paginated list of builds that have been run in
   // Taskcluster. Can be filtered on various git-specific
@@ -47,6 +50,7 @@ export default class Github extends Client {
 
     return this.request(this.builds.entry, args);
   }
+
   /* eslint-disable max-len */
   // Checks the status of the latest build of a given branch
   // and returns corresponding badge svg.
@@ -56,6 +60,7 @@ export default class Github extends Client {
 
     return this.request(this.badge.entry, args);
   }
+
   /* eslint-disable max-len */
   // Returns any repository metadata that is
   // useful within Taskcluster related services.
@@ -65,6 +70,7 @@ export default class Github extends Client {
 
     return this.request(this.repository.entry, args);
   }
+
   /* eslint-disable max-len */
   // For a given branch of a repository, this will always point
   // to a status page for the most recent task triggered by that
@@ -76,6 +82,7 @@ export default class Github extends Client {
 
     return this.request(this.latest.entry, args);
   }
+
   /* eslint-disable max-len */
   // For a given changeset (SHA) of a repository, this will attach a "commit status"
   // on github. These statuses are links displayed next to each revision.
@@ -87,6 +94,7 @@ export default class Github extends Client {
 
     return this.request(this.createStatus.entry, args);
   }
+
   /* eslint-disable max-len */
   // For a given Issue or Pull Request of a repository, this will write a new message.
   /* eslint-enable max-len */
